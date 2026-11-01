@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Football Archive</title>
 
     <style>
@@ -18,170 +19,337 @@
         }
 
         body {
-            font-family: Arial, sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
             background: #07090d;
-            color: white;
+            color: #ffffff;
+            min-height: 100vh;
         }
 
+        /* HERO */
+
         .hero {
-            min-height: 80vh;
+            min-height: 100vh;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             text-align: center;
-            background:
-                radial-gradient(circle at top, #17345b, transparent 65%),
-                #07090d;
             padding: 40px 20px;
+            background:
+                radial-gradient(circle at 50% 30%, rgba(40, 90, 180, 0.18), transparent 35%),
+                linear-gradient(180deg, #0a0d13 0%, #07090d 100%);
+        }
+
+        .hero-content {
+            max-width: 900px;
+            animation: fadeUp 1s ease forwards;
         }
 
         .hero h1 {
-            font-size: clamp(3rem, 8vw, 6rem);
-            background: linear-gradient(90deg, #ffffff, #4da3ff);
+            font-size: clamp(55px, 9vw, 110px);
+            font-weight: 900;
+            letter-spacing: -5px;
+            line-height: 0.95;
+            margin-bottom: 28px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(90deg, #ffffff, #8fa8d8);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            margin-bottom: 20px;
         }
 
         .hero p {
-            color: #aab4c3;
-            font-size: 1.2rem;
+            color: #9ba3b2;
+            font-size: 18px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 50px;
         }
 
         .scroll-button {
-            margin-top: 35px;
-            padding: 13px 28px;
-            border-radius: 30px;
-            background: #2678d9;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 52px;
+            height: 52px;
+            border: 1px solid rgba(255,255,255,0.18);
+            border-radius: 50%;
             color: white;
             text-decoration: none;
-            transition: 0.3s;
+            font-size: 22px;
+            transition: 0.3s ease;
         }
 
         .scroll-button:hover {
-            background: #4598ff;
-            transform: translateY(-3px);
+            background: white;
+            color: #07090d;
+            transform: translateY(5px);
         }
+
+        /* MAIN */
 
         main {
             max-width: 1200px;
             margin: auto;
-            padding: 70px 25px;
+            padding: 100px 30px 120px;
         }
 
         .section {
-            margin-bottom: 90px;
+            margin-bottom: 130px;
         }
 
         .section-header {
-            margin-bottom: 35px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 25px;
         }
 
-        .section-header h2 {
-            font-size: 2.3rem;
-            margin-bottom: 10px;
+        .section-number {
+            color: #555d6b;
+            font-size: 13px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
         }
 
-        .section-header p {
-            color: #8995a5;
+        .section-title {
+            font-size: 48px;
+            font-weight: 800;
+            letter-spacing: -2px;
         }
+
+        .section-line {
+            height: 1px;
+            background: linear-gradient(90deg, #303744, transparent);
+            margin-bottom: 45px;
+        }
+
+        /* CARDS */
 
         .cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(2, minmax(280px, 390px));
+            justify-content: center;
+            gap: 35px;
         }
 
         .card {
-            display: block;
             text-decoration: none;
             color: white;
-            background: #111722;
-            border: 1px solid #202b3b;
-            border-radius: 15px;
+            display: block;
+
+            background: linear-gradient(
+                145deg,
+                #171b24,
+                #0e1118
+            );
+
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 20px;
+
             overflow: hidden;
-            transition: 0.3s;
+
+            transition:
+                transform 0.4s ease,
+                border-color 0.4s ease,
+                box-shadow 0.4s ease;
         }
 
         .card:hover {
-            transform: translateY(-8px);
-            border-color: #398fff;
-            box-shadow: 0 10px 30px #0008;
+            transform: translateY(-10px);
+
+            border-color: rgba(255,255,255,0.35);
+
+            box-shadow:
+                0 25px 60px rgba(0,0,0,0.5);
+        }
+
+        /* IMAGE */
+
+        .card-image-container {
+            height: 250px;
+            position: relative;
+            overflow: hidden;
+
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+
+            background:
+                radial-gradient(
+                    circle at 50% 30%,
+                    rgba(80,110,170,0.25),
+                    transparent 60%
+                ),
+                #10141c;
         }
 
         .card-image {
-            height: 260px;
-            overflow: hidden;
-        }
-
-        .card-image img {
             width: 100%;
             height: 100%;
+
             object-fit: cover;
-            transition: 0.4s;
+            object-position: center top;
+
+            transition: transform 0.5s ease;
         }
 
-        .card:hover .card-image img {
-            transform: scale(1.06);
+        .card:hover .card-image {
+            transform: scale(1.04);
         }
+
+        /* HORIZONTAL LINE */
 
         .card-divider {
-            height: 1px;
-            background: #263449;
+            height: 2px;
+            width: 100%;
+
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255,255,255,0.65),
+                transparent
+            );
         }
 
-        .card-content {
+        /* NAME */
+
+        .card-info {
+            min-height: 105px;
+
             display: flex;
-            justify-content: space-between;
             align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
             padding: 20px;
         }
 
-        .card-content h3 {
-            font-size: 1.25rem;
+        .card-name {
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: -0.7px;
         }
+
+        /* ARROW */
 
         .card-arrow {
-            color: #4da3ff;
-            font-size: 1.5rem;
+            margin-left: 8px;
+            display: inline-block;
+
+            transition: transform 0.3s ease;
         }
+
+        .card:hover .card-arrow {
+            transform: translateX(5px);
+        }
+
+        /* PLAYERS */
+
+        .empty-state {
+            min-height: 280px;
+
+            border: 1px dashed rgba(255,255,255,0.13);
+            border-radius: 20px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            background: rgba(255,255,255,0.015);
+        }
+
+        .empty-state h3 {
+            font-size: 28px;
+            margin-bottom: 12px;
+        }
+
+        .empty-state p {
+            color: #707887;
+            font-size: 15px;
+        }
+
+        /* FOOTER */
 
         footer {
+            border-top: 1px solid rgba(255,255,255,0.08);
+
+            padding: 35px 25px;
+
             text-align: center;
-            padding: 30px;
-            border-top: 1px solid #202b3b;
-            color: #758195;
+
+            color: #555d6b;
+
+            font-size: 13px;
+            letter-spacing: 1px;
         }
 
-        .reveal {
-            opacity: 0;
-            transform: translateY(25px);
-            transition: 0.7s;
+        /* ANIMATION */
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        /* MOBILE */
 
         @media (max-width: 800px) {
-            main {
-                padding: 50px 20px;
+
+            .hero h1 {
+                letter-spacing: -3px;
             }
 
-            .section-header h2 {
-                font-size: 2rem;
-            }
-        }
-
-        @media (max-width: 450px) {
             .hero p {
-                font-size: 1rem;
+                font-size: 13px;
+                letter-spacing: 2px;
+            }
+
+            main {
+                padding: 70px 18px 80px;
+            }
+
+            .section {
+                margin-bottom: 90px;
+            }
+
+            .section-title {
+                font-size: 36px;
             }
 
             .cards {
                 grid-template-columns: 1fr;
+                max-width: 390px;
+                margin: auto;
+            }
+
+            .card-image-container {
+                height: 380px;
+            }
+        }
+
+        @media (max-width: 450px) {
+
+            .hero h1 {
+                font-size: 55px;
+            }
+
+            .card-image-container {
+                height: 340px;
+            }
+
+            .card-name {
+                font-size: 24px;
             }
         }
     </style>
@@ -189,100 +357,240 @@
 
 <body>
 
+    <!-- HERO -->
+
     <header class="hero">
-        <h1>Football Archive</h1>
-        <p>The careers. The stories. The legends.</p>
-        <a href="#managers" class="scroll-button">Explore Archive ↓</a>
+
+        <div class="hero-content">
+
+            <h1>
+                Football <span>Archive</span>
+            </h1>
+
+            <p>
+                The careers. The stories. The legends.
+            </p>
+
+            <a
+                href="#managers"
+                class="scroll-button"
+                aria-label="Explore"
+            >
+                ↓
+            </a>
+
+        </div>
+
     </header>
+
 
     <main>
 
         <!-- MANAGERS -->
 
-        <section class="section reveal" id="managers">
+        <section class="section" id="managers">
 
             <div class="section-header">
-                <h2>Managers</h2>
-                <p>Discover the greatest football managers.</p>
+
+                <div>
+
+                    <div class="section-number">
+                        01 / Category
+                    </div>
+
+                    <h2 class="section-title">
+                        Managers
+                    </h2>
+
+                </div>
+
             </div>
+
+            <div class="section-line"></div>
+
 
             <div class="cards">
 
-                <a href="https://ofer1264012640-sys.github.io/Pep-Guardiola/" class="card">
-                    <div class="card-image">
-                        <img src="images/pep-guardiola.jpg" alt="Pep Guardiola">
+                <!-- PEP GUARDIOLA -->
+
+                <a
+                    class="card"
+                    href="https://ofer1264012640-sys.github.io/Pep-Guardiola/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+
+                    <div class="card-image-container">
+
+                        <img
+                            class="card-image"
+                            src="images/pep-guardiola.jpg"
+                            alt="Pep Guardiola"
+                        >
+
                     </div>
 
                     <div class="card-divider"></div>
 
-                    <div class="card-content">
-                        <h3>Pep Guardiola</h3>
-                        <span class="card-arrow">↗</span>
+                    <div class="card-info">
+
+                        <div class="card-name">
+                            Pep Guardiola
+                            <span class="card-arrow">→</span>
+                        </div>
+
                     </div>
+
                 </a>
 
-                <a href="https://ofer1264012640-sys.github.io/jose-mourinho/index.html" class="card">
-                    <div class="card-image">
-                        <img src="images/jose-mourinho.jpg" alt="Jose Mourinho">
+
+                <!-- JOSE MOURINHO -->
+
+                <a
+                    class="card"
+                    href="https://ofer1264012640-sys.github.io/jose-mourinho/index.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+
+                    <div class="card-image-container">
+
+                        <img
+                            class="card-image"
+                            src="images/jose-mourinho.jpg"
+                            alt="José Mourinho"
+                        >
+
                     </div>
 
                     <div class="card-divider"></div>
 
-                    <div class="card-content">
-                        <h3>José Mourinho</h3>
-                        <span class="card-arrow">↗</span>
+                    <div class="card-info">
+
+                        <div class="card-name">
+                            José Mourinho
+                            <span class="card-arrow">→</span>
+                        </div>
+
                     </div>
+
                 </a>
 
             </div>
+
         </section>
 
 
         <!-- PLAYERS -->
 
-        <section class="section reveal" id="players">
+        <section class="section" id="players">
 
             <div class="section-header">
-                <h2>Players</h2>
-                <p>Discover the greatest football players.</p>
+
+                <div>
+
+                    <div class="section-number">
+                        02 / Category
+                    </div>
+
+                    <h2 class="section-title">
+                        Players
+                    </h2>
+
+                </div>
+
             </div>
+
+            <div class="section-line"></div>
+
 
             <div class="cards">
 
-                <a href="MESSI_WEBSITE_URL" class="card">
-                    <div class="card-image">
-                        <img src="images/lionel-messi.jpg" alt="Lionel Messi">
+                <!-- LIONEL MESSI -->
+
+                <a
+                    class="card"
+                    href="MESSI_WEBSITE_URL"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+
+                    <div class="card-image-container">
+
+                        <img
+                            class="card-image"
+                            src="images/lionel-messi.jpg"
+                            alt="Lionel Messi"
+                        >
+
                     </div>
 
                     <div class="card-divider"></div>
 
-                    <div class="card-content">
-                        <h3>Lionel Messi</h3>
-                        <span class="card-arrow">↗</span>
+                    <div class="card-info">
+
+                        <div class="card-name">
+                            Lionel Messi
+                            <span class="card-arrow">→</span>
+                        </div>
+
                     </div>
+
                 </a>
 
             </div>
+
         </section>
 
     </main>
+
 
     <footer>
         © 2026 Football Archive
     </footer>
 
-    <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add("visible");
-                }
-            });
-        });
 
-        document.querySelectorAll(".reveal").forEach(element => {
-            observer.observe(element);
-        });
+    <script>
+
+        /* Scroll reveal */
+
+        const observer = new IntersectionObserver(
+            (entries) => {
+
+                entries.forEach((entry) => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.style.opacity = "1";
+                        entry.target.style.transform = "translateY(0)";
+
+                    }
+
+                });
+
+            },
+            {
+                threshold: 0.12
+            }
+        );
+
+
+        document
+            .querySelectorAll(".card, .empty-state")
+            .forEach((element) => {
+
+                element.style.opacity = "0";
+
+                element.style.transform =
+                    "translateY(30px)";
+
+                element.style.transition =
+                    "opacity 0.7s ease, transform 0.7s ease";
+
+                observer.observe(element);
+
+            });
+
     </script>
 
 </body>
